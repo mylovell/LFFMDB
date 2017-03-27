@@ -20,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSDictionary *dict = [NSDictionary dictionary];
+    [dict allKeys];
+    
     //1、 Create Database With Path
     NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"t_student.db"];
     FMDatabase *db = [FMDatabase databaseWithPath:path];
@@ -74,7 +77,8 @@
 
 - (IBAction)update:(id)sender {
     [self.db open];
-    [self.db executeUpdate:@"UPDATE t_student SET age = '101' WHERE name = 'Tom-4'"];
+    //[self.db executeUpdate:@"UPDATE t_student SET age = '101' WHERE name = 'Tom-4'"];
+    [self.db executeUpdate:@"UPDATE t_student SET age = (?) WHERE name = 'Tom-4'",@1010];
     [self.db close];
     
 }
